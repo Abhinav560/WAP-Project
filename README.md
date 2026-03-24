@@ -1,3 +1,5 @@
+PROJECT QuoteLens
+
 Project Overview
 This project is a web application built using JavaScript where I am working with a public API. The main idea is to fetch anime quotes (Attack on Titan) and display them on a webpage.
 
