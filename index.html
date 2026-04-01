@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuoteLens</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1>✨ QuoteLens</h1>
+            <button id="theme" class="theme-btn">🌙</button>
+        </div>
+        <p>Discover anime quotes</p>
+    </header>
+
+    <div class="controls">
+        <input type="text" id="search" placeholder="Search..." oninput="searchQuotes()">
+        <select id="filter" onchange="filterByCharacter()">
+            <option value="">All Characters</option>
+        </select>
+    </div>
+
+    <div id="loading" class="loading">Loading...</div>
+    <div id="quotes"></div>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            populateCharacters();
+        });
+    </script>
+</body>
+</html>
