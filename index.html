@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuoteLens</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'YOUR_GA_MEASUREMENT_ID');
+    </script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,21 +22,53 @@
         <p>Discover anime quotes</p>
     </header>
 
+    <!-- Stats Panel -->
+    <div class="stats-panel">
+        <button class="stats-toggle" onclick="toggleStats()">📊 My Stats</button>
+        <div class="stats-grid" id="stats-grid" style="display:none;">
+            <div class="stat-card">
+                <div class="stat-label">Quotes Viewed</div>
+                <div class="stat-value" id="stat-viewed">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Searches Made</div>
+                <div class="stat-value" id="stat-searches">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Quotes Saved</div>
+                <div class="stat-value" id="stat-saves">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Fav Character</div>
+                <div class="stat-value" id="stat-character">—</div>
+            </div>
+        </div>
+    </div>
+
     <div class="controls">
-        <input type="text" id="search" placeholder="Search..." oninput="searchQuotes()">
-        <select id="filter" onchange="filterByCharacter()">
+        <input type="text" id="search" placeholder="Search quotes or characters...">
+        <select id="filter">
             <option value="">All Characters</option>
+        </select>
+        <select id="sort" onchange="applyFilters()">
+            <option value="">Sort By</option>
+            <option value="az">Character A→Z</option>
+            <option value="za">Character Z→A</option>
+            <option value="shortest">Shortest Quote</option>
+            <option value="longest">Longest Quote</option>
         </select>
     </div>
 
-    <div id="loading" class="loading">Loading...</div>
+    <div id="loading" class="loading">Loading quotes...</div>
+
+    <div id="favorites-section" style="display:none;">
+        <h2 class="section-title">❤️ Favorites</h2>
+        <div id="favorites"></div>
+    </div>
+
+    <h2 class="section-title">All Quotes</h2>
     <div id="quotes"></div>
 
     <script src="js/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            populateCharacters();
-        });
-    </script>
 </body>
 </html>

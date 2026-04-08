@@ -9,6 +9,7 @@
     --text: #333;
     --card: white;
     --border: #ddd;
+    --accent: #e74c3c;
 }
 
 body.dark-mode {
@@ -23,11 +24,11 @@ body {
     background: var(--bg);
     color: var(--text);
     padding: 20px;
-    transition: 0.3s;
+    transition: background 0.3s, color 0.3s;
 }
 
 header {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .header-top {
@@ -41,10 +42,60 @@ h1 {
     font-size: 2.5rem;
 }
 
+.section-title {
+    font-size: 1.2rem;
+    margin: 20px 0 12px;
+    opacity: 0.85;
+}
+
+/* ── Stats Panel ── */
+.stats-panel {
+    margin-bottom: 20px;
+}
+
+.stats-toggle {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 8px 14px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    color: var(--text);
+    margin-bottom: 10px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-bottom: 6px;
+}
+
+.stat-value {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/* ── Controls ── */
 .controls {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 input, select {
@@ -58,6 +109,11 @@ input, select {
 
 input {
     flex: 1;
+    min-width: 150px;
+}
+
+select {
+    min-width: 140px;
 }
 
 .theme-btn {
@@ -67,7 +123,8 @@ input {
     cursor: pointer;
 }
 
-#quotes {
+/* ── Quote Cards ── */
+#quotes, #favorites {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 15px;
@@ -78,17 +135,19 @@ input {
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .quote {
     font-style: italic;
-    margin-bottom: 10px;
-    line-height: 1.5;
+    line-height: 1.6;
+    flex: 1;
 }
 
 .character {
     font-weight: bold;
-    margin: 8px 0;
 }
 
 .anime {
@@ -96,17 +155,49 @@ input {
     opacity: 0.7;
 }
 
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.like-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text);
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.like-btn:hover {
+    background: rgba(231, 76, 60, 0.1);
+    border-color: var(--accent);
+}
+
+.like-btn.liked {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
 .loading {
     text-align: center;
     padding: 30px;
 }
 
+.empty-msg {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 30px;
+    opacity: 0.6;
+}
+
 @media (max-width: 600px) {
-    h1 {
-        font-size: 1.8rem;
-    }
-    
-    #quotes {
-        grid-template-columns: 1fr;
-    }
+    h1 { font-size: 1.8rem; }
+    #quotes, #favorites { grid-template-columns: 1fr; }
+    .controls { flex-direction: column; }
+    input, select { width: 100%; }
 }
